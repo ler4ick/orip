@@ -6,7 +6,7 @@ import { setLoggedIn } from './redux/features/authSlice'
 function App() {
   const dispatch = useAppDispatch()
   useEffect(() => {
-    const userLogin = localStorage.getItem('userLogin')
+    const userLogin = localStorage.getItem('user')
     if (userLogin) {
       dispatch(setLoggedIn)
     }

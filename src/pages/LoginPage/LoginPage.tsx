@@ -31,7 +31,7 @@ function LoginPage() {
   const dispatch = useAppDispatch()
   const error = useAppSelector(selectError)
   const isLogged = useAppSelector(selectIsLogged)
-  const userLogin = localStorage.getItem('userLogin')
+  const userLogin = localStorage.getItem('user')
 
   const [showElement, setShowElement] = useState(true)
 
@@ -51,7 +51,7 @@ function LoginPage() {
 
   useEffect(() => {
     if (isLogged || userLogin) {
-      navigate(routes.users, { replace: true })
+      navigate('/users/some_mad', { replace: true })
     }
   }, [isLogged, userLogin])
 

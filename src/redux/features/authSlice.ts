@@ -29,19 +29,19 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    resetSuccess: (state) => {
+    resetSuccess: (state: AuthState) => {
       state.success = false
     },
-    setLoggedIn: (state) => {
+    setLoggedIn: (state: AuthState) => {
       state.loggedIn = true
     },
-    resetLoggedIn: (state) => {
+    resetLoggedIn: (state: AuthState) => {
       state.loggedIn = false
     },
-    resetError: (state) => {
+    resetError: (state: AuthState) => {
       state.error = null
     },
-    registerUser: (state, action: PayloadAction<IUser>) => {
+    registerUser: (state: AuthState, action: PayloadAction<IUser>) => {
       let exists = false
       state.users.forEach((user) => {
         if (user.login === action.payload.login) {
@@ -54,13 +54,13 @@ export const authSlice = createSlice({
         state.success = true
       }
     },
-    logIn: (state, action) => {
+    logIn: (state: AuthState, action) => {
       let exists = false
       state.users.forEach((user) => {
         if (user.login === action.payload.login) {
           state.loggedIn = true
           exists = true
-          localStorage.setItem('userLogin', action.payload.login)
+          localStorage.setItem('user', JSON.stringify(action.payload))
         }
       })
       if (!exists) {
