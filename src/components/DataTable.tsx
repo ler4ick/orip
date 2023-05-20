@@ -6,7 +6,7 @@ import { type ICompanyUser } from '../redux/appConfig'
 import { Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
-const columns: GridColDef[] = [
+const UserColumns: GridColDef[] = [
   {
     field: 'id',
     flex: 0.1,
@@ -77,9 +77,96 @@ const columns: GridColDef[] = [
   }
 ]
 
+const TaskColumns: GridColDef[] = [
+  {
+    field: 'id',
+    flex: 0.1,
+    headerAlign: 'center',
+    align: 'center',
+    renderHeader: () => (
+      <Typography variant="body1" color="#000">
+        ID
+      </Typography>
+    ),
+    renderCell: ({ row }) => (
+      <Typography variant="body1" color="#000">
+        {row.id}
+      </Typography>
+    )
+  },
+  {
+    field: 'userID',
+    flex: 0.1,
+    headerAlign: 'center',
+    align: 'center',
+    renderHeader: () => (
+      <Typography variant="body1" color="#000">
+        ID сотрудника
+      </Typography>
+    ),
+    renderCell: ({ row }) => (
+      <Typography variant="body1" color="#000">
+        {row.userID}
+      </Typography>
+    )
+  },
+  {
+    field: 'title',
+    flex: 0.4,
+    headerAlign: 'center',
+    align: 'center',
+    renderHeader: () => (
+      <Typography variant="body1" color="#000">
+        Название
+      </Typography>
+    ),
+    renderCell: ({ row }) => (
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      <Link to={`/tasks/${row.id}`}>
+        <Typography variant="body1" color="#000">
+          {row.title}
+        </Typography>
+      </Link>
+    )
+  },
+  {
+    field: 'time',
+    headerAlign: 'center',
+    align: 'center',
+    renderHeader: () => (
+      <Typography variant="body1" color="#000">
+        Оцененное время
+      </Typography>
+    ),
+    flex: 0.25,
+    renderCell: ({ row }) => (
+      <Typography variant="body1" color="#000">
+        {row.time}
+      </Typography>
+    )
+  },
+  {
+    field: 'status',
+    renderHeader: () => (
+      <Typography variant="body1" color="#000">
+        Статус
+      </Typography>
+    ),
+    headerAlign: 'center',
+    align: 'center',
+    flex: 0.25,
+    renderCell: ({ row }) => (
+      <Typography variant="body1" color="#000">
+        {row.status}
+      </Typography>
+    )
+  }
+]
+
 interface DataTableProps {
   columns?: any[]
   rows: ICompanyUser[] | null
+  type: 'user' | 'task'
 }
 
 export default function DataGridDemo(
@@ -90,7 +177,7 @@ export default function DataGridDemo(
       <DataGrid
         hideFooter
         rows={props.rows}
-        columns={columns}
+        columns={props.type === 'user' ? UserColumns : TaskColumns}
         disableRowSelectionOnClick
       />
     </Box>

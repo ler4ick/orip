@@ -12,7 +12,7 @@ const cx = classNames.bind(styles)
 
 function UsersListPage(): ReactElement<React.FC> {
   const users = useAppSelector(selectCompanyUsers)
-  const [rows, setRows] = useState<ICompanyUser[] | null>([])
+  const [rows, setRows] = useState<ICompanyUser[]>([])
 
   useEffect(() => {
     const newRows = users.map((user) => {
@@ -30,7 +30,7 @@ function UsersListPage(): ReactElement<React.FC> {
         <Typography variant="h2">Сотрудники</Typography>
       </div>
       <div className={cx('userslist__table')}>
-        <DataGridDemo rows={rows} />
+        <DataGridDemo type="user" rows={rows} />
       </div>
     </div>
   )
