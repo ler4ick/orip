@@ -1,5 +1,6 @@
-import { Typography, Button, ButtonProps } from '@mui/material'
-import React from 'react'
+import { Typography, Button, type ButtonProps } from '@mui/material'
+import { type ReactElement } from 'react'
+import type React from 'react'
 
 const sizesMap: object = {
   extended: {
@@ -41,7 +42,7 @@ interface ButtonModule extends ButtonProps {
   sizing: string
 }
 
-const ButtonWrapper = (props: ButtonModule) => {
+const ButtonWrapper = (props: ButtonModule): ReactElement<React.FC> => {
   const sizing = sizesMap[props.sizing]
   const {
     startIcon = null,
