@@ -51,7 +51,7 @@ function UserPage(props: UserPageProps): ReactElement<React.FC> {
     <div className={cx('user__container')}>
       <div className={cx('user__profile-photo')}>
         <div className={cx('user__profile-photo__image')}>
-          <img alt="text" src={imageUrl}></img>
+          <img alt="text" src={user?.image}></img>
         </div>
         <div className={cx('user__profile-photo__data')}>
           <div className={cx('user__profile-photo__data__option')}>

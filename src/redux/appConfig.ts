@@ -11,6 +11,7 @@ export interface ICompanyUser {
   fio: string
   name: string
   date: string
+  image: string
   tasks: ITask[]
 }
 
@@ -162,6 +163,8 @@ export const users: ICompanyUser[] = [
     id: 1,
     fio: 'Лысенко Игорь Дмитриевич',
     name: 'Igor',
+    image:
+      'https://sun9-49.userapi.com/impg/8Sqr66V_U9U_WPyZ_gaJGfniAQs8FYKeQDUE3A/_1bNFaJGf_o.jpg?size=683x1024&quality=95&sign=7535fe3db26ceb504b904f610102336e&type=album',
     date: '18.05.2003',
     tasks: tasks.filter((task) => task.userID === 1)
   },
@@ -169,12 +172,16 @@ export const users: ICompanyUser[] = [
     id: 2,
     fio: 'Скопин Валентин Викторович',
     name: 'Valya',
+    image:
+      'https://sun9-29.userapi.com/impg/1CHkic6LZYiZPi6GQPwVghjhxwiyw3MILTo2Iw/S6JFTlPDLDQ.jpg?size=1090x1024&quality=95&sign=aa7f52287e013ddbee22f97cc5755c5e&type=album',
     date: '22.06.2003',
     tasks: tasks.filter((task) => task.userID === 2)
   },
   {
     id: 3,
     fio: 'Галенин Артем Константинович',
+    image:
+      'https://sun9-79.userapi.com/impg/HdFqShr7Cnn2EBrguhuElweKNHZGP6ps2RvyFA/5iyB0TO88dI.jpg?size=1080x1080&quality=95&sign=8522ccb9d04c5af1ca7c7dfca362b16b&type=album',
     name: 'Artem',
     date: '27.02.2003',
     tasks: tasks.filter((task) => task.userID === 3)
@@ -182,6 +189,8 @@ export const users: ICompanyUser[] = [
   {
     id: 4,
     name: 'Sasha',
+    image:
+      'https://sun9-24.userapi.com/impg/sHpTixbOPujcTDzMPlWgyuBvIb3fSRV9e3l-3Q/LVutLrzQ750.jpg?size=600x654&quality=96&sign=0524f3d297f76851c349e0a71023f3f6&type=album',
     fio: 'Орлов Александр Леонидович',
     date: '15.11.2003',
     tasks: tasks.filter((task) => task.userID === 4)

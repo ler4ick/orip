@@ -111,6 +111,21 @@ export const authSlice = createSlice({
           (user) => user.id !== action.payload
         )
       }
+    },
+    updateTask: (state: AuthState, action: PayloadAction<ITask>) => {
+      const currentTask = state.tasks.filter(
+        (task) => task.id === action.payload.id
+      )
+      currentTask[0] = action.payload
+      return {
+        ...state,
+        tasks: state.tasks.map((task) => {
+          if (task.id === currentTask[0].id) {
+            task = currentTask[0]
+          }
+          return task
+        })
+      }
     }
   }
 })
@@ -126,7 +141,8 @@ export const {
   addTaks,
   addUser,
   deleteTask,
-  deleteUser
+  deleteUser,
+  updateTask
 } = authSlice.actions
 
 export const selectError = (state: RootState): string | null => state.auth.error
