@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { RootState } from '../store'
+import { type RootState } from '../store'
+import { type ICompanyUser, type ITask, tasks, users } from '../appConfig'
 
 export interface IUser {
   fullName: string
@@ -16,13 +17,21 @@ interface AuthState {
   users: IUser[]
   success: boolean
   loggedIn: boolean
+  tasks: ITask[]
+  companyUsers: ICompanyUser[]
+  currentTaskID: number
+  currentUserID: number
 }
 
 const initialState: AuthState = {
   users: [],
   error: null,
   success: false,
-  loggedIn: false
+  loggedIn: false,
+  tasks,
+  companyUsers: users,
+  currentTaskID: tasks.length,
+  currentUserID: users.length
 }
 
 export const authSlice = createSlice({
@@ -66,6 +75,57 @@ export const authSlice = createSlice({
       if (!exists) {
         state.error = 'Пользователь не зарегистрирован'
       }
+    },
+    logOut: () => {
+      localStorage.clear()
+      return initialState
+    },
+
+    addTaks: (state: AuthState, action: PayloadAction<ITask>) => {
+      state.companyUsers.forEach((user) => {
+        if (user.id === action.payload.userID) {
+          state.tasks.push({ ...action.payload, id: state.currentTaskID + 1 })
+          state.currentTaskID += 1
+          // eslint-disable-next-line no-useless-return
+          return
+        }
+      })
+    },
+    addUser: (state: AuthState, action: PayloadAction<ICompanyUser>) => {
+      state.companyUsers.push({
+        ...action.payload,
+        id: state.currentUserID + 1
+      })
+      state.currentUserID += 1
+    },
+    deleteTask: (state: AuthState, action: PayloadAction<number>) => {
+      return {
+        ...state,
+        tasks: state.tasks.filter((task) => task.id !== action.payload)
+      }
+    },
+    deleteUser: (state: AuthState, action: PayloadAction<number>) => {
+      return {
+        ...state,
+        companyUsers: state.companyUsers.filter(
+          (user) => user.id !== action.payload
+        )
+      }
+    },
+    updateTask: (state: AuthState, action: PayloadAction<ITask>) => {
+      const currentTask = state.tasks.filter(
+        (task) => task.id === action.payload.id
+      )
+      currentTask[0] = action.payload
+      return {
+        ...state,
+        tasks: state.tasks.map((task) => {
+          if (task.id === currentTask[0].id) {
+            task = currentTask[0]
+          }
+          return task
+        })
+      }
     }
   }
 })
@@ -76,12 +136,23 @@ export const {
   resetSuccess,
   resetError,
   resetLoggedIn,
-  setLoggedIn
+  setLoggedIn,
+  logOut,
+  addTaks,
+  addUser,
+  deleteTask,
+  deleteUser,
+  updateTask
 } = authSlice.actions
 
-export const selectError = (state: RootState) => state.auth.error
-export const selectIsSuccess = (state: RootState) => state.auth.success
-export const selectUsers = (state: RootState) => state.auth.users
-export const selectIsLogged = (state: RootState) => state.auth.loggedIn
+export const selectError = (state: RootState): string | null => state.auth.error
+export const selectIsSuccess = (state: RootState): boolean => state.auth.success
+export const selectUsers = (state: RootState): IUser[] => state.auth.users
+export const selectIsLogged = (state: RootState): boolean => state.auth.loggedIn
+
+export const selectCompanyUsers = (state: RootState): ICompanyUser[] =>
+  state.auth.companyUsers
+
+export const selectTasks = (state: RootState): ITask[] => state.auth.tasks
 
 export default authSlice.reducer

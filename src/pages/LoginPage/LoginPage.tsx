@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { type ReactElement } from 'react'
+import type React from 'react'
+import { useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './login.module.scss'
 import { Alert, TextField, Typography } from '@mui/material'
@@ -13,10 +15,8 @@ import {
   logIn,
   resetError,
   resetLoggedIn,
-  resetSuccess,
   selectError,
-  selectIsLogged,
-  selectIsSuccess
+  selectIsLogged
 } from '../../redux/features/authSlice'
 
 const cx = classNames.bind(styles)
@@ -26,7 +26,7 @@ const INITIAL_VALUES = {
   password: ''
 }
 
-function LoginPage() {
+function LoginPage(): ReactElement<React.FC> {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const error = useAppSelector(selectError)
@@ -44,13 +44,13 @@ function LoginPage() {
   }, [showElement])
 
   useEffect(() => {
-    if (error) {
+    if (error != null) {
       setShowElement(true)
     }
   }, [error])
 
   useEffect(() => {
-    if (isLogged || userLogin) {
+    if (isLogged || userLogin != null) {
       navigate('/users/some_mad', { replace: true })
     }
   }, [isLogged, userLogin])
@@ -99,7 +99,7 @@ function LoginPage() {
                 }}
                 loading={false}
                 onClick={() => {
-                  submitForm()
+                  void submitForm()
                 }}
               >
                 <Typography variant="body1">Войти</Typography>
@@ -119,7 +119,9 @@ function LoginPage() {
         {showElement && isLogged && (
           <Alert severity="success">Вход успешен</Alert>
         )}
-        {showElement && error && <Alert severity="error">{error}</Alert>}
+        {showElement && error != null && (
+          <Alert severity="error">{error}</Alert>
+        )}
       </div>
     </div>
   )
