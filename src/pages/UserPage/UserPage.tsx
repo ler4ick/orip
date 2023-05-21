@@ -71,7 +71,7 @@ function UserPage(props: UserPageProps): ReactElement<React.FC> {
           <Typography variant="h2">Задачи</Typography>
           {userTasks.map((task) => (
             <div key={task.id} className={cx('user__profile-data__task')}>
-              <Link to={`${task.id}`}>
+              <Link to={`/tasks/${task.id}`}>
                 <Typography variant="body1" color="blue">
                   {task.title}
                 </Typography>
