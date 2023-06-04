@@ -1,0 +1,57 @@
+.news-item {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 420px;
+  height: 260px;
+  border: 1px solid grey;
+  border-radius: 14px;
+  position: relative;
+
+  div {
+    color: #000;
+  }
+
+  &__title {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 15px;
+    align-items: center;
+    flex-direction: row;
+    height: 50px;
+    width: 405px;
+    border-bottom: 1px solid grey;
+    color: blue !important;
+    font-weight: 700;
+    font-size: 22px;
+  }
+
+  &__text {
+    padding-left: 15px;
+    width: 80%;
+  }
+
+  &__date {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    color: grey;
+  }
+
+  &__edit-button {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  &__delete-button {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+  }
+}

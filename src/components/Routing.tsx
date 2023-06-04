@@ -1,23 +1,16 @@
 import { type ReactElement } from 'react'
 import type React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import RegisterPage from '../pages/RegisterPage/RegisterPage'
-import LoginPage from '../pages/LoginPage/LoginPage'
-import UsersListPage from '../pages/UsersList/UsersListPage'
-import UserPage from '../pages/UserPage/UserPage'
 import ProtectedRoutes from './ProtectedRoutes'
-import Tasks from '../pages/Tasks/Tasks'
-import Task from '../pages/Task/Task'
+import NewsPage from '../pages/NewsPage/NewsPage'
 
 export const routes = {
   base: '/',
-  login: '/login/',
-  register: '/register/',
-  users: '/users/',
-  user: '/users/:id',
-  mainUser: '/users/some_mad',
+  news: '/news',
   tasks: '/tasks',
-  task: '/tasks/:id',
+  users: '/users',
+  newsItem: '/news/:id',
+  editNewsItem: '/news/edit/:id',
   any: '*'
 }
 
@@ -25,24 +18,10 @@ function Routing(): ReactElement<React.FC> {
   return (
     <Routes>
       <Route path={routes.base} element={<ProtectedRoutes />}>
-        <Route
-          path={routes.base}
-          element={<Navigate to={'/users/some_mad'} />}
-        />
-        <Route path={routes.users} element={<UsersListPage />} />
-        <Route
-          path={routes.mainUser}
-          element={
-            <UserPage fullName="Лысенко Игорь Дмитриевич" date="18.05.2003" />
-          }
-        />
-        <Route path={routes.user} element={<UserPage />} />
-        <Route path={routes.tasks} element={<Tasks />} />
-        <Route path={routes.task} element={<Task />} />
+        <Route path={routes.base} element={<Navigate to={routes.news} />} />
+        <Route path={routes.news} element={<NewsPage />} />
+        <Route path={routes.any} element={<></>} />
       </Route>
-      <Route path={routes.login} element={<LoginPage />} />
-      <Route path={routes.any} element={<Navigate to={routes.login} />} />
-      <Route path={routes.register} element={<RegisterPage />} />
     </Routes>
   )
 }

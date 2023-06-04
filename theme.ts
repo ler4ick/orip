@@ -13,9 +13,9 @@ const theme = createTheme({
     }
   },
   typography: {
-    allVariants: {
+    /*     allVariants: {
       color: '#fff'
-    },
+    }, */
     body1: {
       fontSize: '15px',
       fontWeight: 700
@@ -44,7 +44,6 @@ const theme = createTheme({
     MuiTextField: {
       styleOverrides: {
         root: {
-          backgroundColor: '#fff',
           '& .MuiOutlinedInput-input': {
             fontSize: '15px',
             fontWeight: 500,
