@@ -12,7 +12,6 @@ const cx = classNames.bind(styles)
 
 function Tasks(): ReactElement<React.FC> {
   const tasks = useAppSelector(selectTasks)
-  const [rows, setRows] = useState<ITask[]>([])
 
   useEffect(() => {
     const newRows = tasks.map((task) => {
@@ -23,16 +22,7 @@ function Tasks(): ReactElement<React.FC> {
     setRows(newRows)
   }, [tasks])
 
-  return (
-    <div className={cx('userslist__container')}>
-      <div className={cx('userslist__title')}>
-        <Typography variant="h2">Задачи</Typography>
-      </div>
-      <div className={cx('userslist__table')}>
-        <DataGridDemo type="task" rows={rows} />
-      </div>
-    </div>
-  )
+  return <div className={cx('userslist__container')}></div>
 }
 
 export default Tasks

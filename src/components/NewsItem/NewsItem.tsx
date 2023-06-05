@@ -5,33 +5,40 @@ import PNG_DELETE from '../../../public/images/delete.png'
 
 import styles from './NewsItem.module.scss'
 import classNames from 'classnames/bind'
-import { Link } from 'react-router-dom'
 
 const cx = classNames.bind(styles)
 
-interface INewsItem {
-  id: number
-  title: string
-  description: string
-  date: string
+export interface INewsItem {
+  id?: number
+  title?: string
+  description?: string
+  date?: string
+  onClick?: () => void
 }
 
 function NewsItem({
   id,
   date,
   description,
-  title
-}: INewsItem): ReactElement<React.FC> {
+  title,
+  onClick
+}: INewsItem): ReactElement<React.FC> | null {
+  if (id == null) {
+    return null
+  }
   return (
     <div className={cx('news-item')}>
-      <div className={cx('news-item__title')}>
-        <Link to={`/news/edit/${id}`}>{title}</Link>
-      </div>
+      <div className={cx('news-item__title')}>{title}</div>
       <div className={cx('news-item__text')}>{description}</div>
       <div className={cx('news-item__date')}>{date}</div>
-      <Link to={`${id}`} className={cx('news-item__edit-button')}>
-        <img src={PNG_EDIT} alt="photo" width="100%" height="100%" />
-      </Link>
+      <img
+        className={cx('news-item__edit-button')}
+        src={PNG_EDIT}
+        alt="photo"
+        width="100%"
+        height="100%"
+        onClick={onClick}
+      />
       <div className={cx('news-item__delete-button')} onClick={() => {}}>
         <img src={PNG_DELETE} alt="photo" width="100%" height="100%" />
       </div>

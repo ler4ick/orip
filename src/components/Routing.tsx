@@ -3,6 +3,7 @@ import type React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import ProtectedRoutes from './ProtectedRoutes'
 import NewsPage from '../pages/NewsPage/NewsPage'
+import NewsItem from './NewsItem/NewsItem'
 
 export const routes = {
   base: '/',
@@ -10,7 +11,6 @@ export const routes = {
   tasks: '/tasks',
   users: '/users',
   newsItem: '/news/:id',
-  editNewsItem: '/news/edit/:id',
   any: '*'
 }
 
