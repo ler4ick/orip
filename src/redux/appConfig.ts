@@ -70,6 +70,63 @@ export const news: INewspaper[] = [
   }
 ]
 
-export const tasks: ITask[] = []
+export const tasks: ITask[] = [
+  {
+    id: 1,
+    usersIds: [1, 2],
+    title: 'Починить станок',
+    status: 'completed',
+    description: 'Срочно починить станок',
+    responsible: ['Зубенко М.П.', 'Карлуша В.Ю.']
+  },
+  {
+    id: 2,
+    usersIds: [1, 2],
+    title: 'Починить станок',
+    status: 'completed',
+    description: 'Срочно починить станок',
+    responsible: ['Зубенко М.П.', 'Карлуша В.Ю.']
+  },
+  {
+    id: 3,
+    usersIds: [1, 2],
+    title: 'Починить станок',
+    status: 'completed',
+    description: 'Срочно починить станок',
+    responsible: ['Зубенко М.П.', 'Карлуша В.Ю.']
+  },
+  {
+    id: 4,
+    usersIds: [1, 2],
+    title: 'Починить станок',
+    status: 'completed',
+    description: 'Срочно починить станок',
+    responsible: ['Зубенко М.П.', 'Карлуша В.Ю.']
+  },
+  {
+    id: 5,
+    usersIds: [1, 2],
+    title: 'Починить станок',
+    status: 'completed',
+    description: 'Срочно починить станок',
+    responsible: ['Зубенко М.П.', 'Карлуша В.Ю.']
+  },
+  {
+    id: 6,
+    usersIds: [1, 2],
+    title: 'Починить станок',
+    status: 'completed',
+    description: 'Срочно починить станок',
+    responsible: ['Зубенко М.П.', 'Карлуша В.Ю.']
+  },
+  {
+    id: 7,
+    usersIds: [1, 2],
+    title: 'Починить станок',
+    status: 'completed',
+    description: 'Срочно починить станок',
+    responsible: ['Зубенко М.П.', 'Карлуша В.Ю.']
+  }
+]
 
 export const users: ICompanyUser[] = []
