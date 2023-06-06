@@ -1,39 +1,36 @@
-import { useEffect, type ReactElement, useState } from 'react'
 import type React from 'react'
 import styles from './UsersList.module.scss'
 import classNames from 'classnames/bind'
-import { Typography } from '@mui/material'
-import { useAppSelector } from '../../redux/hooks'
-import { selectCompanyUsers } from '../../redux/features/authSlice'
-import { type ICompanyUser } from '../../redux/appConfig'
-import DataGridDemo from '../../components/DataTable'
+import { users } from '../../redux/appConfig'
+import { TextField } from '@mui/material'
+
+import SVG_ADD from '../../../public/images/add.svg'
+
+import { Link } from 'react-router-dom'
+import UserCard from '../../components/UserCard/UserCard'
 
 const cx = classNames.bind(styles)
 
-function UsersListPage(): ReactElement<React.FC> {
-  const users = useAppSelector(selectCompanyUsers)
-  const [rows, setRows] = useState<ICompanyUser[]>([])
-
-  useEffect(() => {
-    const newRows = users.map((user) => {
-      return {
-        ...user,
-        task: user.tasks.length
-      }
-    })
-    setRows(newRows)
-  }, [users])
-
-  return (
-    <div className={cx('userslist__container')}>
-      <div className={cx('userslist__title')}>
-        <Typography variant="h2">Сотрудники</Typography>
-      </div>
-      <div className={cx('userslist__table')}>
-        <DataGridDemo type="user" rows={rows} />
-      </div>
-    </div>
-  )
+interface IUsersListPage {
+  className?: string
 }
 
-export default UsersListPage
+export const UsersListPage: React.FC<IUsersListPage> = ({ className = '' }) => {
+  return (
+    <>
+      <Link to={'create'}>
+        <div className={cx('add-button', className)}>
+          <img src={SVG_ADD} width="100%" height="100%" />
+        </div>
+      </Link>
+      <div className={cx('userslist')}>
+        <TextField label="Введите текст для поиска" onChange={() => {}} />
+        {users.map((item) => (
+          <Link key={item.id} to={`/users/${item.id}`}>
+            <UserCard item={item} />
+          </Link>
+        ))}
+      </div>
+    </>
+  )
+}

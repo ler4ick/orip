@@ -5,6 +5,8 @@ import ProtectedRoutes from './ProtectedRoutes'
 import NewsPage from '../pages/NewsPage/NewsPage'
 import { TasksPage } from '../pages/TasksPage/TasksPage'
 import { TaskPage } from '../pages/TaskPage/TaskPage'
+import { UsersListPage } from '../pages/UsersList/UsersListPage'
+import { UserPage } from '../pages/UserPage/UserPage'
 
 export const routes = {
   base: '/',
@@ -12,6 +14,8 @@ export const routes = {
   tasks: '/tasks',
   task: '/tasks/:id',
   users: '/users',
+  user: '/users/:id',
+  createUser: '/users/create',
   newsItem: '/news/:id',
   any: '*'
 }
@@ -24,7 +28,10 @@ function Routing(): ReactElement<React.FC> {
         <Route path={routes.news} element={<NewsPage />} />
         <Route path={routes.tasks} element={<TasksPage />} />
         <Route path={routes.task} element={<TaskPage />} />
-        <Route path={routes.any} element={<></>} />
+        <Route path={routes.users} element={<UsersListPage />} />
+        <Route path={routes.user} element={<UserPage />} />
+        <Route path={routes.createUser} element={<UserPage type="create" />} />
+        <Route path={routes.any} element={<Navigate to={routes.news} />} />
       </Route>
     </Routes>
   )

@@ -5,6 +5,8 @@ import PNG_DELETE from '../../../public/images/delete.png'
 
 import styles from './NewsItem.module.scss'
 import classNames from 'classnames/bind'
+import { deleteNews } from '../../redux/features/authSlice'
+import { useAppDispatch } from '../../redux/hooks'
 
 const cx = classNames.bind(styles)
 
@@ -23,6 +25,7 @@ function NewsItem({
   title,
   onClick
 }: INewsItem): ReactElement<React.FC> | null {
+  const dispatch = useAppDispatch()
   if (id == null) {
     return null
   }
@@ -39,7 +42,12 @@ function NewsItem({
         height="100%"
         onClick={onClick}
       />
-      <div className={cx('news-item__delete-button')} onClick={() => {}}>
+      <div
+        className={cx('news-item__delete-button')}
+        onClick={() => {
+          dispatch(deleteNews(id))
+        }}
+      >
         <img src={PNG_DELETE} alt="photo" width="100%" height="100%" />
       </div>
     </div>

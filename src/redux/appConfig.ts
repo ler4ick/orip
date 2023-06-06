@@ -16,6 +16,7 @@ export interface ICompanyUser {
   job: string
   started: string
   phone: string
+  image: string
 }
 
 export interface INewspaper {
@@ -129,4 +130,29 @@ export const tasks: ITask[] = [
   }
 ]
 
-export const users: ICompanyUser[] = []
+export const users: ICompanyUser[] = [
+  {
+    id: 1,
+    fio: 'Зубенко М.П.',
+    image:
+      'https://www.dmarge.com/wp-content/uploads/2021/01/dwayne-the-rock-.jpg',
+    gender: 'male',
+    birthdate: '18.05.2003',
+    city: 'Москва',
+    job: 'Кассир',
+    started: '10.01.2022',
+    phone: '+79780402522'
+  },
+  {
+    id: 2,
+    fio: 'Карлуша В.Ю.',
+    image:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Pierre-Person.jpg/800px-Pierre-Person.jpg',
+    gender: 'male',
+    birthdate: '18.05.2003',
+    city: 'Краснодар',
+    job: 'Склад',
+    started: '10.01.2022',
+    phone: '+79780402523'
+  }
+]

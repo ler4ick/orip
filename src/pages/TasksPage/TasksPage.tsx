@@ -2,7 +2,7 @@ import type React from 'react'
 import styles from './TasksPage.module.scss'
 import classNames from 'classnames/bind'
 import { useState } from 'react'
-import { type ITask, tasks } from '../../redux/appConfig'
+import { tasks } from '../../redux/appConfig'
 import { TextField } from '@mui/material'
 
 import SVG_ADD from '../../../public/images/add.svg'

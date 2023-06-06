@@ -11,6 +11,8 @@ import SVG_CHECKMARK from '../../../public/images/checkmark.svg'
 import { Field, Form, Formik } from 'formik'
 
 import { TextField } from '@mui/material'
+import { useAppDispatch } from '../../redux/hooks'
+import { createNews, editNews } from '../../redux/features/authSlice'
 
 const cx = classNames.bind(styles)
 
@@ -36,12 +38,22 @@ const NewsItemPage: React.FC<INewsItemPage> = ({
           description: null,
           date: null
         }
+  const dispatch = useAppDispatch()
   return (
     <Formik
       enableReinitialize
       initialValues={initialValues}
       onSubmit={(values) => {
-        console.log(values)
+        if (type === 'edit') {
+          dispatch(
+            editNews({
+              ...values,
+              id: item.id
+            })
+          )
+        } else {
+          dispatch(createNews(values))
+        }
       }}
     >
       {({ handleSubmit }) => (
