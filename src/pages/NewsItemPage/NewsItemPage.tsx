@@ -51,8 +51,15 @@ const NewsItemPage: React.FC<INewsItemPage> = ({
               id: item.id
             })
           )
+          onClose()
         } else {
-          dispatch(createNews(values))
+          dispatch(
+            createNews({
+              ...values,
+              date: new Date(Date.now()).toLocaleDateString()
+            })
+          )
+          onClose()
         }
       }}
     >
@@ -64,11 +71,18 @@ const NewsItemPage: React.FC<INewsItemPage> = ({
                 <Field as={TextField} name="title" label="Название" />
               </div>
               <div className={cx('news-item__text')}>
-                <Field as={TextField} name="description" label="Описание" />
+                <Field
+                  style={{
+                    width: 400
+                  }}
+                  as={TextField}
+                  name="description"
+                  label="Описание"
+                />
               </div>
-              <div className={cx('news-item__date')}>
+              {/* <div className={cx('news-item__date')}>
                 <Field as={TextField} name="date" label="Дата публикации" />
-              </div>
+              </div> */}
               <img
                 className={cx('news-item__edit-button')}
                 src={SVG_CHECKMARK}

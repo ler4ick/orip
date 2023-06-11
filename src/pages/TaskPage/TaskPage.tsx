@@ -40,7 +40,9 @@ export const TaskPage: React.FC<ITaskPage> = ({ className = '' }) => {
         <div className={cx('task__title')}>
           <h2>{task?.title}</h2> <h2>Статус: {task?.status}</h2>
         </div>
-        <div className={cx('task__description')}>{task?.description}</div>
+        <div className={cx('task__description')}>
+          <div className={cx('task__text')}>{task?.description}</div>
+        </div>
         <h2>Ответственные работники:</h2>
         <div className={cx('task__responsible')}>{task?.responsible}</div>
 
