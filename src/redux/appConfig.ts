@@ -4,7 +4,7 @@ export interface ITask {
   title: string
   status: 'completed' | 'awaiting' | 'not_completed'
   description: string
-  responsible: string[]
+  responsible: string
 }
 
 export interface ICompanyUser {
@@ -28,6 +28,12 @@ export interface INewspaper {
 
 export const news: INewspaper[] = [
   {
+    id: 0,
+    title: 'Название новости 1',
+    description: 'Крутое название новости актуально 27/4 поучительно очень',
+    date: '23.05.2023'
+  },
+  {
     id: 1,
     title: 'Название новости 1',
     description: 'Крутое название новости актуально 27/4 поучительно очень',
@@ -41,13 +47,13 @@ export const news: INewspaper[] = [
   },
   {
     id: 3,
-    title: 'Название новости 1',
+    title: 'Название новости 5',
     description: 'Крутое название новости актуально 27/4 поучительно очень',
     date: '23.05.2023'
   },
   {
     id: 4,
-    title: 'Название новости 5',
+    title: 'Название новости 1',
     description: 'Крутое название новости актуально 27/4 поучительно очень',
     date: '23.05.2023'
   },
@@ -59,12 +65,6 @@ export const news: INewspaper[] = [
   },
   {
     id: 6,
-    title: 'Название новости 1',
-    description: 'Крутое название новости актуально 27/4 поучительно очень',
-    date: '23.05.2023'
-  },
-  {
-    id: 7,
     title: 'Название новости 1',
     description: 'Крутое название новости актуально 27/4 поучительно очень',
     date: '23.05.2023'
@@ -73,66 +73,66 @@ export const news: INewspaper[] = [
 
 export const tasks: ITask[] = [
   {
-    id: 1,
-    usersIds: [1, 2],
+    id: 0,
+    usersIds: [0, 1],
     title: 'Починить станок',
     status: 'completed',
     description: 'Срочно починить станок',
-    responsible: ['Зубенко М.П.', 'Карлуша В.Ю.']
+    responsible: 'Карлуша В.Ю.'
+  },
+  {
+    id: 1,
+    usersIds: [0, 1],
+    title: 'Починить станок',
+    status: 'completed',
+    description: 'Срочно починить станок',
+    responsible: 'Карлуша В.Ю.'
   },
   {
     id: 2,
-    usersIds: [1, 2],
+    usersIds: [0, 1],
     title: 'Починить станок',
     status: 'completed',
     description: 'Срочно починить станок',
-    responsible: ['Зубенко М.П.', 'Карлуша В.Ю.']
+    responsible: 'Зубенко М.П.'
   },
   {
     id: 3,
-    usersIds: [1, 2],
+    usersIds: [0, 1],
     title: 'Починить станок',
     status: 'completed',
     description: 'Срочно починить станок',
-    responsible: ['Зубенко М.П.', 'Карлуша В.Ю.']
+    responsible: 'Зубенко М.П.'
   },
   {
     id: 4,
-    usersIds: [1, 2],
+    usersIds: [0, 1],
     title: 'Починить станок',
     status: 'completed',
     description: 'Срочно починить станок',
-    responsible: ['Зубенко М.П.', 'Карлуша В.Ю.']
+    responsible: 'Карлуша В.Ю.'
   },
   {
     id: 5,
-    usersIds: [1, 2],
+    usersIds: [0, 1],
     title: 'Починить станок',
     status: 'completed',
     description: 'Срочно починить станок',
-    responsible: ['Зубенко М.П.', 'Карлуша В.Ю.']
+    responsible: 'Зубенко М.П.'
   },
   {
     id: 6,
-    usersIds: [1, 2],
+    usersIds: [0, 1],
     title: 'Починить станок',
     status: 'completed',
     description: 'Срочно починить станок',
-    responsible: ['Зубенко М.П.', 'Карлуша В.Ю.']
-  },
-  {
-    id: 7,
-    usersIds: [1, 2],
-    title: 'Починить станок',
-    status: 'completed',
-    description: 'Срочно починить станок',
-    responsible: ['Зубенко М.П.', 'Карлуша В.Ю.']
+    responsible: 'Зубенко М.П.'
   }
 ]
 
 export const users: ICompanyUser[] = [
   {
-    id: 1,
+    id: 0,
     fio: 'Зубенко М.П.',
     image:
       'https://www.dmarge.com/wp-content/uploads/2021/01/dwayne-the-rock-.jpg',
@@ -144,7 +144,7 @@ export const users: ICompanyUser[] = [
     phone: '+79780402522'
   },
   {
-    id: 2,
+    id: 1,
     fio: 'Карлуша В.Ю.',
     image:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Pierre-Person.jpg/800px-Pierre-Person.jpg',

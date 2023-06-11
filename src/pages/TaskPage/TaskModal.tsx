@@ -12,6 +12,12 @@ import { Field, Form, Formik } from 'formik'
 import { TextField } from '@mui/material'
 import { type ITask } from '../../redux/appConfig'
 import Select from '../../components/Select'
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
+import {
+  createTask,
+  editTask,
+  selectCompanyUsers
+} from '../../redux/features/authSlice'
 
 const cx = classNames.bind(styles)
 
@@ -28,6 +34,10 @@ const TaskModal: React.FC<ITaskModal> = ({
   onClose,
   type
 }) => {
+  const users = useAppSelector(selectCompanyUsers)
+
+  const dispatch = useAppDispatch()
+
   const initialValues =
     type === 'edit'
       ? { ...item }
@@ -36,14 +46,20 @@ const TaskModal: React.FC<ITaskModal> = ({
           title: null,
           description: null,
           status: null,
-          responsible: null
+          responsible: []
         }
   return (
     <Formik
       enableReinitialize
       initialValues={initialValues}
       onSubmit={(values) => {
-        console.log(values)
+        if (type === 'edit') {
+          dispatch(editTask(values))
+          onClose()
+        } else {
+          dispatch(createTask(values))
+          onClose()
+        }
       }}
     >
       {({ handleSubmit }) => (
@@ -81,16 +97,12 @@ const TaskModal: React.FC<ITaskModal> = ({
                 <div className={cx('news-item__text')}>
                   <Field
                     as={Select}
-                    options={[
-                      {
-                        label: 'Зубенко М.П.',
-                        value: 1
-                      },
-                      {
-                        label: 'Карлуша В.Ю.',
-                        value: 2
+                    options={users.map((user) => {
+                      return {
+                        label: user.fio,
+                        value: user.fio
                       }
-                    ]}
+                    })}
                     name="responsible"
                     label="Ответственный"
                   />

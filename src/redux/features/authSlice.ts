@@ -1,8 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { type RootState } from '../store'
 import { type ICompanyUser, type ITask, tasks, users, news } from '../appConfig'
-import { INewsItem } from '../../components/NewsItem/NewsItem'
+import { type INewsItem } from '../../components/NewsItem/NewsItem'
 
 export interface IUser {
   fullName: string
@@ -48,13 +47,13 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     getTask: (state: AuthState, action) => {
-      const task = state.tasks.filter((task) => task.id !== action.payload)
+      const task = state.tasks.filter((task) => task.id === action.payload)
 
       return { ...state, task: task[0] }
     },
     getUser: (state: AuthState, action) => {
       const user = state.companyUsers.filter(
-        (user) => user.id !== action.payload
+        (user) => user.id === action.payload
       )
 
       return {
@@ -70,7 +69,7 @@ export const authSlice = createSlice({
       }
     },
     editNews: (state, action) => {
-      const newNews = []
+      const newNews: INewsItem[] = []
       state.news.forEach((item) => {
         if (item.id === action.payload.id) {
           item = action.payload
@@ -84,13 +83,84 @@ export const authSlice = createSlice({
       }
     },
     createNews: (state, action) => {
-      state.news.push({ ...action.payload, id: state.news.length + 1 })
+      state.news.push({ ...action.payload, id: state.news.length })
+    },
+
+    createUser: (state, action) => {
+      state.companyUsers.push({
+        ...action.payload,
+        id: state.companyUsers.length
+      })
+    },
+    editUser: (state, action) => {
+      const newUsers: ICompanyUser[] = []
+      state.companyUsers.forEach((user) => {
+        if (user.id === action.payload.id) {
+          user = action.payload
+        }
+        newUsers.push(user)
+      })
+
+      return {
+        ...state,
+        companyUsers: newUsers
+      }
+    },
+    deleteUser: (state, action: PayloadAction<number | undefined>) => {
+      const newUsers = state.companyUsers.filter(
+        (user) => user.id !== action.payload
+      )
+      return {
+        ...state,
+        companyUsers: newUsers
+      }
+    },
+
+    createTask: (state, action) => {
+      state.tasks.push({
+        ...action.payload,
+        id: state.tasks.length
+      })
+    },
+
+    editTask: (state, action) => {
+      const newTasks: ITask[] = []
+      state.tasks.forEach((task) => {
+        if (task.id === action.payload.id) {
+          task = action.payload
+        }
+        newTasks.push(task)
+      })
+
+      return {
+        ...state,
+        tasks: newTasks
+      }
+    },
+
+    deleteTask: (state, action) => {
+      const newTasks = state.tasks.filter((task) => task.id !== action.payload)
+      return {
+        ...state,
+        tasks: newTasks
+      }
     }
   }
 })
 
-export const { getTask, getUser, deleteNews, editNews, createNews } =
-  authSlice.actions
+export const {
+  getTask,
+  getUser,
+  deleteNews,
+  editNews,
+  createNews,
+  createUser,
+  deleteUser,
+  editUser,
+  createTask,
+  deleteTask,
+  editTask
+} = authSlice.actions
 
 export const selectError = (state: RootState): string | null => state.auth.error
 export const selectIsSuccess = (state: RootState): boolean => state.auth.success

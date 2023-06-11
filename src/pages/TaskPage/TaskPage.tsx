@@ -6,9 +6,9 @@ import PNG_DELETE from '../../../public/images/delete.png'
 import styles from './TaskPage.module.scss'
 import classNames from 'classnames/bind'
 import { type ITask } from '../../redux/appConfig'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { getTask, selectTask } from '../../redux/features/authSlice'
+import { deleteTask, getTask, selectTask } from '../../redux/features/authSlice'
 import { useEffect, useState } from 'react'
 import TaskModal from './TaskModal'
 
@@ -22,12 +22,16 @@ interface ITaskPage {
 export const TaskPage: React.FC<ITaskPage> = ({ className = '' }) => {
   const [isModal, setIsModal] = useState(false)
 
+  const navigate = useNavigate()
+
   const dispatch = useAppDispatch()
   const { id } = useParams()
+  const taskId = parseInt(id)
 
   const task = useAppSelector(selectTask)
+
   useEffect(() => {
-    dispatch(getTask(id))
+    dispatch(getTask(taskId))
   }, [dispatch])
 
   return (
@@ -38,15 +42,17 @@ export const TaskPage: React.FC<ITaskPage> = ({ className = '' }) => {
         </div>
         <div className={cx('task__description')}>{task?.description}</div>
         <h2>Ответственные работники:</h2>
-        <h3 onClick={() => {}}>Назначить</h3>
-        {task?.responsible.map((person) => (
-          <div key={person} className={cx('task__responsible')}>
-            {person}
-          </div>
-        ))}
+        <div className={cx('task__responsible')}>{task?.responsible}</div>
 
-        <div className={cx('task__buttons')} onClick={() => {}}>
-          <img src={PNG_DELETE} alt="delete" />
+        <div className={cx('task__buttons')}>
+          <img
+            src={PNG_DELETE}
+            alt="delete"
+            onClick={() => {
+              dispatch(deleteTask(task?.id))
+              navigate(-1)
+            }}
+          />
           <img
             src={PNG_EDIT}
             alt="edit"

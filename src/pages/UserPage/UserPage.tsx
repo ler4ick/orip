@@ -1,10 +1,16 @@
 import type React from 'react'
 import styles from './user.module.scss'
 import classNames from 'classnames/bind'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { useEffect, useState } from 'react'
-import { getUser, selectCompanyUser } from '../../redux/features/authSlice'
+import {
+  createUser,
+  deleteUser,
+  editUser,
+  getUser,
+  selectCompanyUser
+} from '../../redux/features/authSlice'
 import { Field, Form, Formik } from 'formik'
 import { TextField } from '@mui/material'
 import Select from '../../components/Select'
@@ -23,15 +29,21 @@ export const UserPage: React.FC<UserPageProps> = ({
   className = '',
   type = 'edit'
 }) => {
+  const { id } = useParams()
+  const userId = parseInt(id)
   const user = useAppSelector(selectCompanyUser)
+  const navigate = useNavigate()
+
+  console.log(user, userId)
 
   const [image, setImage] = useState(null)
 
   const dispatch = useAppDispatch()
-  const { id } = useParams()
 
   useEffect(() => {
-    dispatch(getUser(id))
+    if (type === 'edit') {
+      dispatch(getUser(userId))
+    }
   }, [dispatch])
 
   const initialValues =
@@ -77,12 +89,22 @@ export const UserPage: React.FC<UserPageProps> = ({
             onSubmit={(values) => {
               if (type === 'create') {
                 values.image = URL.createObjectURL(image)
+                dispatch(createUser(values))
+                navigate(-1)
+              } else {
+                dispatch(
+                  editUser({
+                    ...values,
+                    id: userId
+                  })
+                )
+                navigate(-1)
               }
             }}
             initialValues={initialValues}
             enableReinitialize
           >
-            {({ values, handleSubmit }) => (
+            {({ handleSubmit }) => (
               <Form>
                 <div
                   className={cx('user__container__form-container__form__field')}
@@ -160,7 +182,13 @@ export const UserPage: React.FC<UserPageProps> = ({
                   <img width="100%" height="100%" src={SVG_CHECKMARK} />
                 </div>
                 {type !== 'create' && (
-                  <div className={cx('user__delete')} onClick={() => {}}>
+                  <div
+                    className={cx('user__delete')}
+                    onClick={() => {
+                      dispatch(deleteUser(user?.id))
+                      navigate(-1)
+                    }}
+                  >
                     <img width="100%" height="100%" src={PNG_DELETE} />
                   </div>
                 )}
