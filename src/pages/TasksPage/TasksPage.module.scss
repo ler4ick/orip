@@ -6,6 +6,20 @@
   gap: 30px;
   margin-top: 40px;
   padding-bottom: 70px;
+  animation-duration: 0.5s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    opacity: 0;
+    margin-top: 150px;
+  }
+
+  to {
+    margin-top: 40px;
+    opacity: 1;
+  }
 }
 
 .add-button {
