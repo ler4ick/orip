@@ -49,7 +49,8 @@ const theme = createTheme({
             fontWeight: 500,
             width: '100%',
             height: '44px',
-            padding: 0
+            padding: 0,
+            paddingRight: 20
           },
           '& .css-1mccynf-MuiInputBase-root-MuiOutlinedInput-root': {
             paddingRight: 0
@@ -79,7 +80,8 @@ const theme = createTheme({
       defaultProps: {
         inputProps: {
           style: {
-            paddingLeft: '20px'
+            paddingLeft: '20px',
+            maxHeight: '200px'
           }
         }
       }

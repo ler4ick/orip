@@ -1,6 +1,5 @@
 import { useState, type ReactElement, useEffect } from 'react'
 import type React from 'react'
-/* import { news } from '../../redux/appConfig' */
 import NewsItem, { type INewsItem } from '../../components/NewsItem/NewsItem'
 
 import { TextField } from '@mui/material'
@@ -20,7 +19,7 @@ function NewsPage(): ReactElement<React.FC> {
   const [isModal, setIsModal] = useState(false)
   const [type, setType] = useState<'edit' | 'create'>('edit')
   const [currentItem, setCurrentItem] = useState<INewsItem>({})
-  const [filter, setFilter] = useState<INewsItem[]>(news)
+  const [filter, setFilter] = useState<INewsItem[] | null>(news)
 
   useEffect(() => {
     setFilter(news)
@@ -39,6 +38,10 @@ function NewsPage(): ReactElement<React.FC> {
       </div>
       <div className={cx('news-page')}>
         <TextField
+          sx={{
+            maxWidth: 420,
+            minWidth: 300
+          }}
           label="Введите текст для поиска"
           onChange={(e) => {
             if (e.target.value === '') {

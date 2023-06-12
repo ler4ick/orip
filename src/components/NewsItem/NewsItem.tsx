@@ -32,7 +32,11 @@ function NewsItem({
   return (
     <div className={cx('news-item')}>
       <div className={cx('news-item__title')}>{title}</div>
-      <div className={cx('news-item__text')}>{description}</div>
+      <div className={cx('news-item__text')}>
+        <div>
+          {description?.substring(0, 200)} {description?.length > 200 && '...'}
+        </div>
+      </div>
       <div className={cx('news-item__date')}>{date}</div>
       <img
         className={cx('news-item__edit-button')}
@@ -55,3 +59,5 @@ function NewsItem({
 }
 
 export default NewsItem
+
+//оченьggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg

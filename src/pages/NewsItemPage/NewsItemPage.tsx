@@ -73,9 +73,12 @@ const NewsItemPage: React.FC<INewsItemPage> = ({
               <div className={cx('news-item__text')}>
                 <Field
                   style={{
-                    width: 400
+                    width: 385,
+                    height: 400
                   }}
                   as={TextField}
+                  multiline
+                  rows={4}
                   name="description"
                   label="Описание"
                 />

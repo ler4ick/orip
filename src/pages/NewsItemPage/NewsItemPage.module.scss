@@ -3,6 +3,20 @@
   top: 30%;
   left: 39%;
   z-index: 9999;
+  animation-duration: 0.5s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    opacity: 0;
+    margin-top: 150px;
+  }
+
+  to {
+    margin-top: 0px;
+    opacity: 1;
+  }
 }
 
 .outer-container {
@@ -38,13 +52,14 @@
     padding-left: 15px;
     align-items: center;
     flex-direction: row;
-    height: 50px;
+    height: 70px;
     width: 405px;
     border-bottom: 1px solid grey;
     color: blue !important;
     font-weight: 700;
     font-size: 22px;
     margin-top: 15px;
+    padding-bottom: 15px;
   }
 
   &__text {

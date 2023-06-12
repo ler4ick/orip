@@ -109,13 +109,13 @@ export const UserPage: React.FC<UserPageProps> = ({
                 <div
                   className={cx('user__container__form-container__form__field')}
                 >
-                  <h4>Фамилия имя отчество:</h4>
+                  <h6>Фамилия имя отчество:</h6>
                   <Field as={TextField} name="fio" placeholder="ФИО" />
                 </div>
                 <div
                   className={cx('user__container__form-container__form__field')}
                 >
-                  <h4>Пол:</h4>
+                  <h6>Пол:</h6>
                   <Field
                     name="gender"
                     as={Select}
@@ -138,7 +138,7 @@ export const UserPage: React.FC<UserPageProps> = ({
                 <div
                   className={cx('user__container__form-container__form__field')}
                 >
-                  <h4>Дата рождения:</h4>
+                  <h6>Дата рождения:</h6>
                   <Field
                     as={TextField}
                     name="birthdate"
@@ -148,19 +148,19 @@ export const UserPage: React.FC<UserPageProps> = ({
                 <div
                   className={cx('user__container__form-container__form__field')}
                 >
-                  <h4>Город:</h4>
+                  <h6>Город:</h6>
                   <Field as={TextField} name="city" placeholder="Город" />
                 </div>
                 <div
                   className={cx('user__container__form-container__form__field')}
                 >
-                  <h4>Должность:</h4>
+                  <h6>Должность:</h6>
                   <Field as={TextField} name="job" placeholder="Должность" />
                 </div>
                 <div
                   className={cx('user__container__form-container__form__field')}
                 >
-                  <h4>Дата начала работы:</h4>
+                  <h6>Дата начала работы:</h6>
                   <Field
                     as={TextField}
                     name="started"
@@ -170,7 +170,7 @@ export const UserPage: React.FC<UserPageProps> = ({
                 <div
                   className={cx('user__container__form-container__form__field')}
                 >
-                  <h4>Телефон:</h4>
+                  <h6>Телефон:</h6>
                   <Field as={TextField} name="phone" placeholder="Телефон" />
                 </div>
                 <div

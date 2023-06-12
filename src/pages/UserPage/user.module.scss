@@ -33,7 +33,23 @@
           align-items: center;
           flex-direction: row;
           width: 420px;
+          margin-bottom: 20px;
         }
+      }
+    }
+
+    animation-duration: 0.5s;
+    animation-name: slidein;
+
+    @keyframes slidein {
+      from {
+        opacity: 0;
+        margin-top: 150px;
+      }
+
+      to {
+        margin-top: 50px;
+        opacity: 1;
       }
     }
   }

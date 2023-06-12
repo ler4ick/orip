@@ -9,6 +9,8 @@
   position: relative;
   background-color: #fff;
 
+  box-shadow: 6px 6px 23px -4px rgba(0, 0, 0, 0.75);
+
   div {
     color: #000;
   }
@@ -30,6 +32,12 @@
   &__text {
     padding-left: 15px;
     width: 80%;
+
+    div {
+      width: 400px;
+      height: 100px;
+      word-wrap: break-word;
+    }
   }
 
   &__date {

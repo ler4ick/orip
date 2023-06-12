@@ -29,6 +29,11 @@
   width: 40px;
   height: 40px;
   cursor: pointer;
+  transition: 0.2s ease;
+
+  &:hover {
+    opacity: 0.5;
+  }
 }
 
 a div {
