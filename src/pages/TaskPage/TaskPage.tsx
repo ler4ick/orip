@@ -12,6 +12,9 @@ import { deleteTask, getTask, selectTask } from '../../redux/features/authSlice'
 import { useEffect, useState } from 'react'
 import TaskModal from './TaskModal'
 
+import CheckIcon from '@mui/icons-material/Check'
+import CancelIcon from '@mui/icons-material/Cancel'
+
 const cx = classNames.bind(styles)
 
 interface ITaskPage {
@@ -47,21 +50,23 @@ export const TaskPage: React.FC<ITaskPage> = ({ className = '' }) => {
         <div className={cx('task__responsible')}>{task?.responsible}</div>
 
         <div className={cx('task__buttons')}>
-          <img
+          {/* <img
             src={PNG_DELETE}
             alt="delete"
             onClick={() => {
               dispatch(deleteTask(task?.id))
               navigate(-1)
             }}
-          />
-          <img
+          /> */}
+          <CancelIcon />
+          {/* <img
             src={PNG_EDIT}
             alt="edit"
             onClick={() => {
               setIsModal(true)
             }}
-          />
+          /> */}
+          <CheckIcon />
         </div>
       </div>
 

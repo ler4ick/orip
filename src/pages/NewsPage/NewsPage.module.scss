@@ -8,6 +8,48 @@
   padding-bottom: 70px;
   animation-duration: 0.5s;
   animation-name: slidein;
+
+  &__input {
+    width: 50%;
+  }
+
+  &__button {
+    position: absolute;
+    top: 80px;
+    right: 50px;
+    width: 200px;
+  }
+
+  &__cards {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 25px;
+    gap: 20px;
+
+    &__card {
+      cursor: pointer;
+      transition: 0.3s ease-in;
+      &:hover {
+        background-color: black;
+        color: white;
+        opacity: 0.6;
+      }
+    }
+  }
+
+  &__title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    padding-left: 30px;
+    gap: 20px;
+    transform: translateY(40px);
+  }
 }
 
 @keyframes slidein {

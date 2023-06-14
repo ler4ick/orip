@@ -10,9 +10,13 @@ import { Link } from 'react-router-dom'
 import TaskModal from '../TaskPage/TaskModal'
 import { useAppSelector } from '../../redux/hooks'
 import { selectTasks } from '../../redux/features/authSlice'
+import { Button, Form, InputGroup } from 'react-bootstrap'
+
+import SearchIcon from '@mui/icons-material/Search'
+import NewspaperIcon from '@mui/icons-material/Newspaper'
+import Example from '../TaskPage/Modal'
 
 const cx = classNames.bind(styles)
-
 interface ITasksPage {
   className?: string
 }
@@ -38,34 +42,56 @@ export const TasksPage: React.FC<ITasksPage> = ({ className = '' }) => {
 
   return (
     <>
-      <div
+      {/* <div
         className={cx('add-button', className)}
         onClick={() => {
           setIsModal(true)
         }}
       >
         <img src={SVG_ADD} width="100%" height="100%" />
-      </div>
+      </div> */}
       <div className={cx('tasks')}>
-        <TextField
+        {/* <TextField
           label="Введите текст для поиска"
           onChange={handleTasksFilter}
-        />
-        {filteredTasks.map((item) => (
-          <Link key={item.id} to={`/tasks/${item.id}`}>
-            <Task item={item} />
-          </Link>
-        ))}
+        /> */}
+        <InputGroup
+          style={{
+            width: '50%'
+          }}
+        >
+          <InputGroup.Text id="basic-addon1">
+            <SearchIcon />
+          </InputGroup.Text>
+          <Form.Control
+            placeholder="Вводите текст"
+            aria-describedby="basic-addon1"
+          />
+        </InputGroup>
+        <Button
+          className={cx('news-page__button')}
+          variant="secondary"
+          size="lg"
+          onClick={() => {
+            setIsModal(true)
+          }}
+        >
+          Создать
+        </Button>
+        <div className={cx('h4')}>
+          <h4>Задачи текущего спринта</h4>
+        </div>
+        <div className={cx('taskslist')}>
+          {filteredTasks.map((item) => (
+            <Link key={item.id} to={`/tasks/${item.id}`}>
+              <Task item={item} />
+            </Link>
+          ))}
+        </div>
+        <Example />
       </div>
 
-      {isModal && (
-        <TaskModal
-          type="create"
-          onClose={() => {
-            setIsModal(false)
-          }}
-        />
-      )}
+      {isModal && <Example show={isModal} />}
     </>
   )
 }

@@ -6,13 +6,29 @@ import classNames from 'classnames/bind'
 import { Link, useLocation } from 'react-router-dom'
 import { routes } from '../Routing'
 import { Typography } from '@mui/material'
+import { Container, Nav, Navbar } from 'react-bootstrap'
 
 const cx = classNames.bind(styles)
 
 function Header(): ReactElement<React.FC> {
   const location = useLocation()
   return (
-    <div className={cx('header__container')}>
+    <Navbar bg="light" variant="light" className={cx('header')}>
+      <Container>
+        <Navbar.Brand> Valeria Corp.</Navbar.Brand>
+        <Nav className="me-auto">
+          <Nav.Link href={routes.news}>Новости</Nav.Link>
+          <Nav.Link href={routes.tasks}>Задачи</Nav.Link>
+          <Nav.Link href={routes.users}>Сотрудники</Nav.Link>
+        </Nav>
+      </Container>
+    </Navbar>
+  )
+}
+
+export default Header
+
+/* <div className={cx('header__container')}>
       <div
         className={cx('header__link', {
           selected: location.pathname.includes(routes.news)
@@ -41,7 +57,4 @@ function Header(): ReactElement<React.FC> {
         </Link>
       </div>
     </div>
-  )
-}
-
-export default Header
+    */

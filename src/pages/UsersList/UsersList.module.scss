@@ -39,3 +39,84 @@
 a div {
   color: #000;
 }
+
+.news-page {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-top: 40px;
+  padding-bottom: 70px;
+  animation-duration: 0.5s;
+  animation-name: slidein;
+
+  &__input {
+    width: 50%;
+  }
+
+  &__button {
+    position: absolute;
+    top: 80px;
+    right: 50px;
+    width: 200px;
+  }
+
+  &__cards {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 25px;
+    gap: 20px;
+
+    &__card {
+      cursor: pointer;
+      transition: 0.3s ease-in;
+      &:hover {
+        background-color: black;
+        color: white;
+        opacity: 0.6;
+      }
+    }
+  }
+
+  &__title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    padding-left: 30px;
+    gap: 20px;
+    transform: translateY(40px);
+  }
+}
+
+@keyframes slidein {
+  from {
+    opacity: 0;
+    margin-top: 150px;
+  }
+
+  to {
+    margin-top: 40px;
+    opacity: 1;
+  }
+}
+
+.add-button {
+  position: fixed;
+  top: 50px;
+  right: 30%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: 0.2s ease;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}

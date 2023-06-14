@@ -18,6 +18,9 @@ import Select from '../../components/Select'
 import SVG_CHECKMARK from '../../../public/images/checkmark.svg'
 import PNG_DELETE from '../../../public/images/delete.png'
 
+import CancelIcon from '@mui/icons-material/Cancel'
+import CheckIcon from '@mui/icons-material/Check'
+
 const cx = classNames.bind(styles)
 
 interface UserPageProps {
@@ -179,7 +182,8 @@ export const UserPage: React.FC<UserPageProps> = ({
                     handleSubmit()
                   }}
                 >
-                  <img width="100%" height="100%" src={SVG_CHECKMARK} />
+                  {/* <img width="100%" height="100%" src={SVG_CHECKMARK} /> */}
+                  <CheckIcon />
                 </div>
                 {type !== 'create' && (
                   <div
@@ -189,7 +193,8 @@ export const UserPage: React.FC<UserPageProps> = ({
                       navigate(-1)
                     }}
                   >
-                    <img width="100%" height="100%" src={PNG_DELETE} />
+                    {/* <img width="100%" height="100%" src={PNG_DELETE} /> */}
+                    <CancelIcon />
                   </div>
                 )}
               </Form>

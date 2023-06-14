@@ -2,7 +2,7 @@ export interface ITask {
   id: number
   usersIds: number[]
   title: string
-  status: 'completed' | 'awaiting' | 'not_completed'
+  status: 'Готово' | 'В процессе' | 'Заблокировано'
   description: string
   responsible: string
 }
@@ -76,7 +76,7 @@ export const tasks: ITask[] = [
     id: 0,
     usersIds: [0, 1],
     title: 'Починить станок',
-    status: 'completed',
+    status: 'Готово',
     description: 'Срочно починить станок',
     responsible: 'Карлуша В.Ю.'
   },
@@ -84,7 +84,7 @@ export const tasks: ITask[] = [
     id: 1,
     usersIds: [0, 1],
     title: 'Починить станок',
-    status: 'completed',
+    status: 'Готово',
     description: 'Срочно починить станок',
     responsible: 'Карлуша В.Ю.'
   },
@@ -92,7 +92,7 @@ export const tasks: ITask[] = [
     id: 2,
     usersIds: [0, 1],
     title: 'Починить станок',
-    status: 'completed',
+    status: 'Готово',
     description: 'Срочно починить станок',
     responsible: 'Зубенко М.П.'
   },
@@ -100,7 +100,7 @@ export const tasks: ITask[] = [
     id: 3,
     usersIds: [0, 1],
     title: 'Починить станок',
-    status: 'completed',
+    status: 'Готово',
     description: 'Срочно починить станок',
     responsible: 'Зубенко М.П.'
   },
@@ -108,7 +108,7 @@ export const tasks: ITask[] = [
     id: 4,
     usersIds: [0, 1],
     title: 'Починить станок',
-    status: 'completed',
+    status: 'Готово',
     description: 'Срочно починить станок',
     responsible: 'Карлуша В.Ю.'
   },
@@ -116,7 +116,7 @@ export const tasks: ITask[] = [
     id: 5,
     usersIds: [0, 1],
     title: 'Починить станок',
-    status: 'completed',
+    status: 'Готово',
     description: 'Срочно починить станок',
     responsible: 'Зубенко М.П.'
   },
@@ -124,7 +124,7 @@ export const tasks: ITask[] = [
     id: 6,
     usersIds: [0, 1],
     title: 'Починить станок',
-    status: 'completed',
+    status: 'Готово',
     description: 'Срочно починить станок',
     responsible: 'Зубенко М.П.'
   }

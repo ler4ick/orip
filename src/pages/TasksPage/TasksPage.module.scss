@@ -39,3 +39,30 @@
 a div {
   color: #000;
 }
+
+.news-page__button {
+  position: absolute;
+  top: 80px;
+  right: 50px;
+  width: 200px;
+}
+
+.taskslist {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 20px;
+  padding-left: 50px;
+}
+
+.h4 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  padding-left: 50px;
+}
