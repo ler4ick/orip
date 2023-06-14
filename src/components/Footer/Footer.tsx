@@ -10,7 +10,7 @@ export const Footer = () => {
     <Navbar
       bg="light"
       style={{
-        position: 'absolute',
+        position: 'fixed',
         top: '94%',
         left: 0,
         width: '100%'

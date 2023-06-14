@@ -11,11 +11,14 @@ import NewsItemPage from '../NewsItemPage/NewsItemPage'
 import SVG_ADD from '../../../public/images/add.svg'
 import { useAppSelector } from '../../redux/hooks'
 import { selectNews } from '../../redux/features/authSlice'
-import { Button, Card, Form, InputGroup } from 'react-bootstrap'
+import { Button, Card, Form, InputGroup, Modal } from 'react-bootstrap'
 
 import SearchIcon from '@mui/icons-material/Search'
 import NewspaperIcon from '@mui/icons-material/Newspaper'
 import Example from '../TaskPage/Modal'
+
+import PNG_DOG from '/public/images/dog.png'
+import { Link } from 'react-router-dom'
 
 const cx = classNames.bind(styles)
 
@@ -25,6 +28,8 @@ function NewsPage(): ReactElement<React.FC> {
   const [type, setType] = useState<'edit' | 'create'>('edit')
   const [currentItem, setCurrentItem] = useState<INewsItem>({})
   const [filter, setFilter] = useState<INewsItem[] | null>(news)
+
+  const [show, setShow] = useState(false)
 
   useEffect(() => {
     setFilter(news)
@@ -80,6 +85,9 @@ function NewsPage(): ReactElement<React.FC> {
           variant="secondary"
           size="lg"
           className={cx('news-page__button')}
+          onClick={() => {
+            setShow(true)
+          }}
         >
           Создать
         </Button>
@@ -89,10 +97,14 @@ function NewsPage(): ReactElement<React.FC> {
         <div className={cx('news-page__cards')}>
           {filter.map((item) => (
             <Card
-              className={cx('news-page__cards__card')}
               key={item.id}
-              style={{ width: '22rem', height: '15rem' }}
+              className={cx('news-page__cards__card')}
+              style={{ width: '22rem', height: '25rem' }}
+              onClick={() => {
+                setShow(true)
+              }}
             >
+              <Card.Img variant="top" src={PNG_DOG} />
               <Card.Body>
                 <Card.Title>{item.title}</Card.Title>
                 <Card.Text>{item.description}</Card.Text>
@@ -111,7 +123,54 @@ function NewsPage(): ReactElement<React.FC> {
           }}
         />
       )}
-      <Example show={true} />
+      {/* <Example /> */}
+      <Modal
+        show={show}
+        onHide={() => {
+          setShow(false)
+        }}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Создание новости</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Название</Form.Label>
+              <Form.Control type="text" placeholder="Название" autoFocus />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Описание</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={5}
+                placeholder="Введите описание"
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              setShow(false)
+            }}
+          >
+            Отмена
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => {
+              setShow(false)
+            }}
+          >
+            Сохранить
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   )
 }

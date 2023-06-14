@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 import TaskModal from '../TaskPage/TaskModal'
 import { useAppSelector } from '../../redux/hooks'
 import { selectTasks } from '../../redux/features/authSlice'
-import { Button, Form, InputGroup } from 'react-bootstrap'
+import { Button, Form, InputGroup, Modal } from 'react-bootstrap'
 
 import SearchIcon from '@mui/icons-material/Search'
 import NewspaperIcon from '@mui/icons-material/Newspaper'
@@ -23,6 +23,11 @@ interface ITasksPage {
 
 export const TasksPage: React.FC<ITasksPage> = ({ className = '' }) => {
   const [isModal, setIsModal] = useState(false)
+
+  const [show, setShow] = useState(false)
+
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
   const tasks = useAppSelector(selectTasks)
   console.log(tasks)
@@ -73,7 +78,7 @@ export const TasksPage: React.FC<ITasksPage> = ({ className = '' }) => {
           variant="secondary"
           size="lg"
           onClick={() => {
-            setIsModal(true)
+            setShow(true)
           }}
         >
           Создать
@@ -88,10 +93,65 @@ export const TasksPage: React.FC<ITasksPage> = ({ className = '' }) => {
             </Link>
           ))}
         </div>
-        <Example />
       </div>
 
-      {isModal && <Example show={isModal} />}
+      <Modal
+        show={show}
+        onHide={() => {
+          setShow(false)
+        }}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Создание задачи</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Название</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Введите название"
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Описание</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={5}
+                placeholder="Введите описание"
+              />
+            </Form.Group>
+
+            <Form.Select aria-label="Default select example">
+              <option>Укажите исполнителей</option>
+              <option value="1">Карлуша В.Ю.</option>
+              <option value="2">Зубенко М.П.</option>
+            </Form.Select>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              setShow(false)
+            }}
+          >
+            Отмена
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => {
+              setShow(false)
+            }}
+          >
+            Сохранить
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   )
 }
